@@ -225,17 +225,15 @@ var saveTasks = function() {
 
 var loadTasks = function() {
     tasks = localStorage.getItem("tasks");
-    console.log(tasks);
+    
     if (!tasks) {
         tasks = [];
         return false;
     }
     tasks = JSON.parse(tasks);
-    console.log(tasks);
 
     for (var i = 0; i < tasks.length; i++) {
         tasks[i].id = taskIdCounter;
-        console.log(tasks);
 
         // create list item
         var listItemEl = document.createElement("li");
@@ -262,16 +260,13 @@ var loadTasks = function() {
             tasksInProgressEl.appendChild(listItemEl);
         } 
         else if (tasks[i].status === "completed") {
-            listItemEl.querySelector("select[name='status-change']").selectedIndex = 1;
+            listItemEl.querySelector("select[name='status-change']").selectedIndex = 2;
             tasksCompletedEl.appendChild(listItemEl);
         }
 
         taskIdCounter++;
-        console.log(listItemEl);
     }
 }
-
-
 
 pageContentEl.addEventListener("click", taskButtonHandler);
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
